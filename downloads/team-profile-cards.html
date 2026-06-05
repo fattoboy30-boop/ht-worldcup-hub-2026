@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Cup 2026 - All 48 Team Profile Cards | HT World Cup Hub</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: #1a1a2e; 
+            color: #e0e0e0; 
+            padding: 20px;
+        }
+        .header { 
+            text-align: center; 
+            padding: 40px 20px; 
+            background: linear-gradient(135deg, #7B2FBE, #00D4AA); 
+            border-radius: 16px; 
+            margin-bottom: 30px;
+        }
+        .header h1 { color: white; font-size: 2rem; margin-bottom: 10px; }
+        .header p { color: rgba(255,255,255,0.9); }
+        .print-btn {
+            display: inline-block;
+            background: #FFD700;
+            color: #1a1a2e;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin: 20px 0;
+            transition: transform 0.3s;
+        }
+        .print-btn:hover { transform: scale(1.05); }
+        .groups-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .group-card {
+            background: #16162a;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .group-header {
+            background: linear-gradient(135deg, #7B2FBE, #5A1F8E);
+            padding: 15px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: white;
+        }
+        .team-row {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: background 0.3s;
+        }
+        .team-row:hover { background: rgba(123, 47, 190, 0.1); }
+        .team-row:last-child { border-bottom: none; }
+        .team-flag { font-size: 2.5rem; margin-right: 15px; }
+        .team-info { flex: 1; }
+        .team-name { font-weight: 600; font-size: 1.1rem; color: white; }
+        .team-meta { color: #a0a0a0; font-size: 0.85rem; margin-top: 4px; }
+        .team-badge {
+            background: #00D4AA;
+            color: #1a1a2e;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        @media print {
+            body { background: white; color: black; }
+            .print-btn { display: none; }
+            .group-card { break-inside: avoid; border: 1px solid #ccc; }
+            .group-header { background: #7B2FBE !important; -webkit-print-color-adjust: exact; }
+            .team-row:hover { background: none; }
+        }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.5rem; }
+            .groups-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>⚽ World Cup 2026 - All 48 Teams</h1>
+        <p>Complete team profile cards for every qualified nation</p>
+        <button class="print-btn" onclick="window.print()">🖨️ Print All Cards</button>
+    </div>
+
+    <div class="groups-grid" id="groupsGrid"></div>
+
+    <script>
+        const groups = {
+            "A": [
+                { name: "Mexico", flag: "🇲🇽", conf: "CONCACAF", star: "Hirving Lozano", fifa: 14 },
+                { name: "South Africa", flag: "🇿🇦", conf: "CAF", star: "Percy Tau", fifa: 56 },
+                { name: "Korea Republic", flag: "🇰🇷", conf: "AFC", star: "Son Heung-min", fifa: 25 },
+                { name: "Czechia", flag: "🇨🇿", conf: "UEFA", star: " Patrik Schick", fifa: 38 }
+            ],
+            "B": [
+                { name: "Canada", flag: "🇨🇦", conf: "CONCACAF", star: "Alphonso Davies", fifa: 43 },
+                { name: "Bosnia & Herzegovina", flag: "🇧🇦", conf: "UEFA", star: "Edin Džeko", fifa: 64 },
+                { name: "Qatar", flag: "🇶🇦", conf: "AFC", star: "Akram Afif", fifa: 37 },
+                { name: "Switzerland", flag: "🇨🇭", conf: "UEFA", star: "Xherdan Shaqiri", fifa: 19 }
+            ],
+            "C": [
+                { name: "Brazil", flag: "🇧🇷", conf: "CONMEBOL", star: "Vinícius Jr.", fifa: 5 },
+                { name: "Morocco", flag: "🇲🇦", conf: "CAF", star: "Achraf Hakimi", fifa: 12 },
+                { name: "Haiti", flag: "🇭🇹", conf: "CONCACAF", star: "Duckens Nazon", fifa: 83 },
+                { name: "Scotland", flag: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", conf: "UEFA", star: "Scott McTominay", fifa: 40 }
+            ],
+            "D": [
+                { name: "USA", flag: "🇺🇸", conf: "CONCACAF", star: "Christian Pulisic", fifa: 11 },
+                { name: "Paraguay", flag: "🇵🇾", conf: "CONMEBOL", star: "Miguel Almirón", fifa: 55 },
+                { name: "Australia", flag: "🇦🇺", conf: "AFC", star: "Mathew Leckie", fifa: 24 },
+                { name: "Türkiye", flag: "🇹🇷", conf: "UEFA", star: "Hakan Çalhanoğlu", fifa: 26 }
+            ],
+            "E": [
+                { name: "Germany", flag: "🇩🇪", conf: "UEFA", star: "Florian Wirtz", fifa: 9 },
+                { name: "Curaçao", flag: "🇨🇼", conf: "CONCACAF", star: "Vangelis Pavlidis", fifa: 86 },
+                { name: "Côte d'Ivoire", flag: "🇨🇮", conf: "CAF", star: "Sébastien Haller", fifa: 42 },
+                { name: "Ecuador", flag: "🇪🇨", conf: "CONMEBOL", star: "Moisés Caicedo", fifa: 44 }
+            ],
+            "F": [
+                { name: "Netherlands", flag: "🇳🇱", conf: "UEFA", star: "Memphis Depay", fifa: 7 },
+                { name: "Japan", flag: "🇯🇵", conf: "AFC", star: "Takefusa Kubo", fifa: 17 },
+                { name: "Sweden", flag: "🇸🇪", conf: "UEFA", star: "Alexander Isak", fifa: 23 },
+                { name: "Tunisia", flag: "🇹🇳", conf: "CAF", star: "Wahbi Khazri", fifa: 41 }
+            ],
+            "G": [
+                { name: "Belgium", flag: "🇧🇪", conf: "UEFA", star: "Kevin De Bruyne", fifa: 4 },
+                { name: "Egypt", flag: "🇪🇬", conf: "CAF", star: "Mohamed Salah", fifa: 33 },
+                { name: "IR Iran", flag: "🇮🇷", conf: "AFC", star: "Sardar Azmoun", fifa: 20 },
+                { name: "New Zealand", flag: "🇳🇿", conf: "OFC", star: "Chris Wood", fifa: 93 }
+            ],
+            "H": [
+                { name: "Spain", flag: "🇪🇸", conf: "UEFA", star: "Lamine Yamal", fifa: 3 },
+                { name: "Cabo Verde", flag: "🇨🇻", conf: "CAF", star: "Ryan Mendes", fifa: 72 },
+                { name: "Saudi Arabia", flag: "🇸🇦", conf: "AFC", star: "Saleh Al-Shehri", fifa: 49 },
+                { name: "Uruguay", flag: "🇺🇾", conf: "CONMEBOL", star: "Federico Valverde", fifa: 15 }
+            ],
+            "I": [
+                { name: "France", flag: "🇫🇷", conf: "UEFA", star: "Kylian Mbappé", fifa: 2 },
+                { name: "Senegal", flag: "🇸🇳", conf: "CAF", star: "Sadio Mané", fifa: 18 },
+                { name: "Iraq", flag: "🇮🇶", conf: "AFC", star: "Merchas Doski", fifa: 58 },
+                { name: "Norway", flag: "🇳🇴", conf: "UEFA", star: "Erling Haaland", fifa: 8 }
+            ],
+            "J": [
+                { name: "Argentina", flag: "🇦🇷", conf: "CONMEBOL", star: "Lionel Messi", fifa: 1 },
+                { name: "Algeria", flag: "🇩🇿", conf: "CAF", star: "Riyad Mahrez", fifa: 46 },
+                { name: "Austria", flag: "🇦🇹", conf: "UEFA", star: "David Alaba", fifa: 31 },
+                { name: "Jordan", flag: "🇯🇴", conf: "AFC", star: "Mousa Tamari", fifa: 67 }
+            ],
+            "K": [
+                { name: "Portugal", flag: "🇵🇹", conf: "UEFA", star: "Cristiano Ronaldo", fifa: 6 },
+                { name: "Congo DR", flag: "🇨🇩", conf: "CAF", star: "Cédric Bakambu", fifa: 52 },
+                { name: "Uzbekistan", flag: "🇺🇿", conf: "AFC", star: "Eldor Shomurodov", fifa: 63 },
+                { name: "Colombia", flag: "🇨🇴", conf: "CONMEBOL", star: "Luis Díaz", fifa: 13 }
+            ],
+            "L": [
+                { name: "England", flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", conf: "UEFA", star: "Jude Bellingham", fifa: 10 },
+                { name: "Croatia", flag: "🇭🇷", conf: "UEFA", star: "Luka Modrić", fifa: 16 },
+                { name: "Ghana", flag: "🇬🇭", conf: "CAF", star: "Thomas Partey", fifa: 36 },
+                { name: "Panama", flag: "🇵🇦", conf: "CONCACAF", star: "Christian Bassogog", fifa: 75 }
+            ]
+        };
+
+        function renderGroups() {
+            const grid = document.getElementById('groupsGrid');
+            
+            for (const [groupName, teams] of Object.entries(groups)) {
+                const groupCard = document.createElement('div');
+                groupCard.className = 'group-card';
+                
+                let teamsHTML = teams.map(team => `
+                    <div class="team-row">
+                        <span class="team-flag">${team.flag}</span>
+                        <div class="team-info">
+                            <div class="team-name">${team.name}</div>
+                            <div class="team-meta">${team.conf} | FIFA #${team.fifa} | ⭐ ${team.star}</div>
+                        </div>
+                        <span class="team-badge">#${team.fifa}</span>
+                    </div>
+                `).join('');
+                
+                groupCard.innerHTML = `
+                    <div class="group-header">Group ${groupName}</div>
+                    ${teamsHTML}
+                `;
+                
+                grid.appendChild(groupCard);
+            }
+        }
+        
+        renderGroups();
+    </script>
+</body>
+</html>

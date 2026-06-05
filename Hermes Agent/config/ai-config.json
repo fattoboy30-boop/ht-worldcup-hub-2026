@@ -1,0 +1,116 @@
+{
+  "name": "Hermes Agent - HT World Cup Hub",
+  "version": "1.0.0",
+  "description": "AI Agent for automating World Cup 2026 content",
+  "providers": {
+    "primary": {
+      "name": "Groq",
+      "baseUrl": "https://api.groq.com/openai/v1",
+      "apiKey": "",
+      "models": {
+        "chat": "llama-3.3-70b-versatile",
+        "fast": "llama-3.1-8b-instant"
+      },
+      "rateLimit": {
+        "rpm": 30,
+        "rpd": 14400
+      },
+      "free": true,
+      "setupUrl": "https://console.groq.com/keys"
+    },
+    "secondary": {
+      "name": "OpenRouter",
+      "baseUrl": "https://openrouter.ai/api/v1",
+      "apiKey": "",
+      "models": {
+        "chat": "meta-llama/llama-3.3-70b-instruct:free",
+        "reasoning": "deepseek/deepseek-r1-0528:free",
+        "fast": "meta-llama/llama-3.1-8b-instruct:free"
+      },
+      "rateLimit": {
+        "rpm": 20,
+        "rpd": 50
+      },
+      "free": true,
+      "setupUrl": "https://openrouter.ai/keys"
+    },
+    "tertiary": {
+      "name": "Google Gemini",
+      "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+      "apiKey": "",
+      "models": {
+        "chat": "gemini-2.0-flash",
+        "pro": "gemini-1.5-pro"
+      },
+      "rateLimit": {
+        "rpm": 15,
+        "rpd": 1500
+      },
+      "free": true,
+      "setupUrl": "https://aistudio.google.com/apikey"
+    },
+    "local": {
+      "name": "Ollama (Local)",
+      "baseUrl": "http://localhost:11434/v1",
+      "apiKey": "ollama",
+      "models": {
+        "chat": "llama3.2",
+        "fast": "phi3"
+      },
+      "rateLimit": {
+        "rpm": "unlimited",
+        "rpd": "unlimited"
+      },
+      "free": true,
+      "note": "Requires Ollama installed locally"
+    }
+  },
+  "defaults": {
+    "provider": "primary",
+    "temperature": 0.7,
+    "maxTokens": 1000,
+    "topP": 0.9
+  },
+  "tasks": {
+    "newsScout": {
+      "description": "Search for World Cup news",
+      "provider": "primary",
+      "model": "fast",
+      "maxTokens": 500
+    },
+    "contentWriter": {
+      "description": "Write Facebook posts and articles",
+      "provider": "primary",
+      "model": "chat",
+      "maxTokens": 800
+    },
+    "socialEngagement": {
+      "description": "Create polls and engagement content",
+      "provider": "primary",
+      "model": "chat",
+      "maxTokens": 400
+    },
+    "imagePrompt": {
+      "description": "Generate image prompts for graphics",
+      "provider": "secondary",
+      "model": "reasoning",
+      "maxTokens": 300
+    }
+  },
+  "brand": {
+    "name": "Honiara Today",
+    "shortName": "HT",
+    "logo": "images/HT LOGO.jpg",
+    "colors": {
+      "primary": "#7B2FBE",
+      "secondary": "#00D4AA",
+      "accent": "#00BFFF",
+      "gold": "#FFD700"
+    },
+    "hashtags": {
+      "primary": ["#WorldCup2026", "#HoniaraToday"],
+      "secondary": ["#SolomonIslands", "#Bonitos", "#Football", "#FIFA"],
+      "team": ["#Brazil", "#Argentina", "#France", "#Germany", "#USA", "#Mexico"]
+    }
+  }
+}

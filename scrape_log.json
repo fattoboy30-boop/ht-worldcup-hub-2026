@@ -1,0 +1,247 @@
+{
+  "timestamp": "2026-06-06T04:26:35",
+  "results": {
+    "hero": [
+      {
+        "file": "hero_01.jpg",
+        "status": "downloaded",
+        "desc": "Stadium lights",
+        "size_kb": 161
+      },
+      {
+        "file": "hero_02.jpg",
+        "status": "downloaded",
+        "desc": "Football on field",
+        "size_kb": 114
+      },
+      {
+        "file": "hero_03.jpg",
+        "status": "downloaded",
+        "desc": "Stadium panorama",
+        "size_kb": 200
+      },
+      {
+        "file": "hero_04.jpg",
+        "status": "downloaded",
+        "desc": "Soccer goal",
+        "size_kb": 79
+      }
+    ],
+    "news": [
+      {
+        "file": "news_01.jpg",
+        "status": "downloaded",
+        "desc": "Stadium",
+        "size_kb": 30
+      },
+      {
+        "file": "news_02.jpg",
+        "status": "downloaded",
+        "desc": "Match",
+        "size_kb": 37
+      },
+      {
+        "file": "news_03.jpg",
+        "status": "downloaded",
+        "desc": "Football",
+        "size_kb": 112
+      },
+      {
+        "file": "news_04.jpg",
+        "status": "downloaded",
+        "desc": "Goal",
+        "size_kb": 58
+      },
+      {
+        "file": "news_05.jpg",
+        "status": "failed",
+        "desc": "Arena"
+      },
+      {
+        "file": "news_06.jpg",
+        "status": "failed",
+        "desc": "Large stadium"
+      },
+      {
+        "file": "news_07.jpg",
+        "status": "downloaded",
+        "desc": "Celebration",
+        "size_kb": 44
+      },
+      {
+        "file": "news_08.jpg",
+        "status": "failed",
+        "desc": "Football close"
+      }
+    ],
+    "fixtures": [
+      {
+        "file": "fixtures_01.jpg",
+        "status": "failed",
+        "desc": "Stadium seats"
+      },
+      {
+        "file": "fixtures_02.jpg",
+        "status": "downloaded",
+        "desc": "Pitch view",
+        "size_kb": 177
+      },
+      {
+        "file": "fixtures_03.jpg",
+        "status": "downloaded",
+        "desc": "Field",
+        "size_kb": 57
+      },
+      {
+        "file": "fixtures_04.jpg",
+        "status": "failed",
+        "desc": "Stadium aerial"
+      }
+    ],
+    "downloads": [
+      {
+        "file": "downloads_01.jpg",
+        "status": "failed",
+        "desc": "Football"
+      },
+      {
+        "file": "downloads_02.jpg",
+        "status": "downloaded",
+        "desc": "Trophy",
+        "size_kb": 44
+      },
+      {
+        "file": "downloads_03.jpg",
+        "status": "downloaded",
+        "desc": "Ball on pitch",
+        "size_kb": 112
+      },
+      {
+        "file": "downloads_04.jpg",
+        "status": "downloaded",
+        "desc": "Stadium",
+        "size_kb": 30
+      },
+      {
+        "file": "downloads_05.jpg",
+        "status": "downloaded",
+        "desc": "Match day",
+        "size_kb": 37
+      },
+      {
+        "file": "downloads_06.jpg",
+        "status": "downloaded",
+        "desc": "Net",
+        "size_kb": 58
+      }
+    ],
+    "wallpapers": [
+      {
+        "file": "wallpapers_01.jpg",
+        "status": "downloaded",
+        "desc": "Stadium lights HD",
+        "size_kb": 161
+      },
+      {
+        "file": "wallpapers_02.jpg",
+        "status": "downloaded",
+        "desc": "Panorama HD",
+        "size_kb": 200
+      },
+      {
+        "file": "wallpapers_03.jpg",
+        "status": "downloaded",
+        "desc": "Field HD",
+        "size_kb": 114
+      },
+      {
+        "file": "wallpapers_04.jpg",
+        "status": "downloaded",
+        "desc": "Goal HD",
+        "size_kb": 79
+      },
+      {
+        "file": "wallpapers_05.jpg",
+        "status": "failed",
+        "desc": "Arena HD"
+      },
+      {
+        "file": "wallpapers_06.jpg",
+        "status": "downloaded",
+        "desc": "Celebration HD",
+        "size_kb": 218
+      }
+    ],
+    "teams": [
+      {
+        "file": "teams_01.jpg",
+        "status": "downloaded",
+        "desc": "Team celebration",
+        "size_kb": 44
+      },
+      {
+        "file": "teams_02.jpg",
+        "status": "downloaded",
+        "desc": "Team huddle",
+        "size_kb": 112
+      },
+      {
+        "file": "teams_03.jpg",
+        "status": "downloaded",
+        "desc": "Team play",
+        "size_kb": 37
+      },
+      {
+        "file": "teams_04.jpg",
+        "status": "downloaded",
+        "desc": "Team action",
+        "size_kb": 58
+      },
+      {
+        "file": "teams_05.jpg",
+        "status": "failed",
+        "desc": "Stadium"
+      },
+      {
+        "file": "teams_06.jpg",
+        "status": "downloaded",
+        "desc": "Match",
+        "size_kb": 30
+      },
+      {
+        "file": "teams_07.jpg",
+        "status": "failed",
+        "desc": "Ball"
+      },
+      {
+        "file": "teams_08.jpg",
+        "status": "failed",
+        "desc": "Large stadium"
+      }
+    ],
+    "flags": [
+      {
+        "file": "flags_01.jpg",
+        "status": "failed",
+        "desc": "Football"
+      },
+      {
+        "file": "flags_02.jpg",
+        "status": "failed",
+        "desc": "Stadium"
+      },
+      {
+        "file": "flags_03.jpg",
+        "status": "downloaded",
+        "desc": "Arena",
+        "size_kb": 50
+      },
+      {
+        "file": "flags_04.jpg",
+        "status": "downloaded",
+        "desc": "Pitch",
+        "size_kb": 57
+      }
+    ]
+  }
+}

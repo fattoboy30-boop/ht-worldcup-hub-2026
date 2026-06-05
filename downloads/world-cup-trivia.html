@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Cup 2026 Trivia Quiz | HT World Cup Hub</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: #1a1a2e; 
+            color: #e0e0e0; 
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .header { 
+            text-align: center; 
+            padding: 40px 20px; 
+            background: linear-gradient(135deg, #7B2FBE, #00D4AA); 
+            border-radius: 16px; 
+            margin-bottom: 30px;
+        }
+        .header h1 { color: white; font-size: 2rem; margin-bottom: 10px; }
+        .header p { color: rgba(255,255,255,0.9); }
+        .quiz-container { max-width: 800px; margin: 0 auto; }
+        .score-board {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .score-item {
+            background: #16162a;
+            padding: 20px 40px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .score-item.correct { border-color: #28a745; }
+        .score-item.wrong { border-color: #dc3545; }
+        .score-value { font-size: 2.5rem; font-weight: 800; color: #FFD700; }
+        .score-label { color: #a0a0a0; margin-top: 5px; }
+        .question-card {
+            background: #16162a;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .question-number { color: #00D4AA; font-weight: 600; margin-bottom: 10px; }
+        .question-text { font-size: 1.3rem; color: white; margin-bottom: 25px; line-height: 1.5; }
+        .options { display: grid; gap: 12px; }
+        .option-btn {
+            padding: 18px 24px;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+        }
+        .option-btn:hover:not(:disabled) {
+            border-color: #7B2FBE;
+            background: rgba(123, 47, 190, 0.2);
+            transform: translateX(5px);
+        }
+        .option-btn.correct { border-color: #28a745; background: rgba(40, 167, 69, 0.2); }
+        .option-btn.wrong { border-color: #dc3545; background: rgba(220, 53, 69, 0.2); }
+        .option-btn:disabled { cursor: not-allowed; opacity: 0.7; }
+        .feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+        .feedback.show { display: block; }
+        .feedback.correct { background: rgba(40, 167, 69, 0.2); border: 1px solid #28a745; }
+        .feedback.wrong { background: rgba(220, 53, 69, 0.2); border: 1px solid #dc3545; }
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #7B2FBE, #00D4AA);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .next-btn:hover { transform: scale(1.05); }
+        .next-btn.show { display: inline-block; }
+        .results {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            background: #16162a;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .results.show { display: block; }
+        .results h2 { color: #FFD700; font-size: 2rem; margin-bottom: 20px; }
+        .results .final-score { font-size: 4rem; font-weight: 800; color: #00D4AA; }
+        .results .message { color: #a0a0a0; margin: 20px 0; font-size: 1.1rem; }
+        .share-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #1877F2;
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 20px;
+            transition: transform 0.3s;
+        }
+        .share-btn:hover { transform: scale(1.05); }
+        .restart-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #00D4AA;
+            color: #1a1a2e;
+            border-radius: 50px;
+            font-weight: 700;
+            margin-top: 20px;
+            margin-left: 10px;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.3s;
+        }
+        .restart-btn:hover { transform: scale(1.05); }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🧠 World Cup 2026 Trivia Quiz</h1>
+        <p>Test your World Cup knowledge! 10 questions</p>
+    </div>
+
+    <div class="quiz-container">
+        <div class="score-board">
+            <div class="score-item correct">
+                <div class="score-value" id="correctScore">0</div>
+                <div class="score-label">Correct</div>
+            </div>
+            <div class="score-item wrong">
+                <div class="score-value" id="wrongScore">0</div>
+                <div class="score-label">Wrong</div>
+            </div>
+        </div>
+
+        <div id="quizContent"></div>
+        <div class="results" id="results">
+            <h2>🏆 Quiz Complete!</h2>
+            <div class="final-score" id="finalScore">0/10</div>
+            <div class="message" id="resultMessage"></div>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://fattoboy30-boop.github.io/ht-worldcup-hub-2026/&quote=I+scored+0/10+on+the+World+Cup+Trivia+Quiz!+Can+you+beat+me?+⚽" 
+               target="_blank" 
+               class="share-btn"
+               id="shareBtn">
+               📤 Share Score on Facebook
+            </a>
+            <button class="restart-btn" onclick="restartQuiz()">🔄 Play Again</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            { question: "How many teams will participate in the 2026 FIFA World Cup?", options: ["32 teams", "48 teams", "64 teams", "24 teams"], correct: 1, explanation: "The 2026 World Cup will feature 48 teams, the largest ever!" },
+            { question: "Which three countries will host the 2026 FIFA World Cup?", options: ["USA, Mexico, Canada", "USA, Brazil, Argentina", "USA, Spain, Portugal", "USA, Japan, Korea"], correct: 0, explanation: "The 2026 World Cup will be hosted by USA, Mexico, and Canada." },
+            { question: "How many matches will be played in the 2026 World Cup?", options: ["64 matches", "80 matches", "104 matches", "128 matches"], correct: 2, explanation: "A record 104 matches will be played across 16 cities." },
+            { question: "Which stadium will host the opening match?", options: ["MetLife Stadium", "Estadio Azteca", "SoFi Stadium", "AT&T Stadium"], correct: 1, explanation: "The historic Estadio Azteca in Mexico City will host the opening match!" },
+            { question: "How many groups are there in the 2026 World Cup?", options: ["8 groups", "10 groups", "12 groups", "16 groups"], correct: 2, explanation: "There are 12 groups (A-L) with 4 teams each." },
+            { question: "Who is the current FIFA World Cup champion (2022)?", options: ["Brazil", "France", "Argentina", "Germany"], correct: 2, explanation: "Argentina won the 2022 World Cup in Qatar, led by Lionel Messi." },
+            { question: "Which team has won the most World Cup titles?", options: ["Germany", "Italy", "Brazil", "Argentina"], correct: 2, explanation: "Brazil has won 5 World Cup titles, more than any other nation." },
+            { question: "When does the 2026 World Cup start?", options: ["June 11, 2026", "June 15, 2026", "July 1, 2026", "May 20, 2026"], correct: 0, explanation: "The tournament kicks off on June 11, 2026!" },
+            { question: "How many host cities will there be in the 2026 World Cup?", options: ["12 cities", "14 cities", "16 cities", "20 cities"], correct: 2, explanation: "16 cities across USA, Mexico, and Canada will host matches." },
+            { question: "Which stadium will host the World Cup final?", options: ["SoFi Stadium", "MetLife Stadium", "AT&T Stadium", "Estadio Azteca"], correct: 1, explanation: "MetLife Stadium in New Jersey will host the final on July 19, 2026!" },
+            { question: "Who is the top scorer in World Cup history?", options: ["Lionel Messi", "Miroslav Klose", "Ronaldo", "Gerd Muller"], correct: 1, explanation: "Miroslav Klose holds the record with 16 World Cup goals!" }
+        ];
+
+        let currentQuestion = 0;
+        let correctAnswers = 0;
+        let wrongAnswers = 0;
+
+        function renderQuestion() {
+            const q = questions[currentQuestion];
+            const container = document.getElementById('quizContent');
+            container.innerHTML = `
+                <div class="question-card">
+                    <div class="question-number">Question ${currentQuestion + 1} of ${questions.length}</div>
+                    <div class="question-text">${q.question}</div>
+                    <div class="options">
+                        ${q.options.map((opt, i) => `<button class="option-btn" onclick="checkAnswer(${i})">${opt}</button>`).join('')}
+                    </div>
+                    <div class="feedback" id="feedback"></div>
+                    <button class="next-btn" id="nextBtn" onclick="nextQuestion()">
+                        ${currentQuestion < questions.length - 1 ? 'Next Question →' : 'See Results 🏆'}
+                    </button>
+                </div>
+            `;
+        }
+
+        function checkAnswer(selected) {
+            const q = questions[currentQuestion];
+            const buttons = document.querySelectorAll('.option-btn');
+            const feedback = document.getElementById('feedback');
+            buttons.forEach((btn, i) => {
+                btn.disabled = true;
+                if (i === q.correct) btn.classList.add('correct');
+                if (i === selected && i !== q.correct) btn.classList.add('wrong');
+            });
+            if (selected === q.correct) {
+                correctAnswers++;
+                feedback.className = 'feedback show correct';
+                feedback.innerHTML = `✅ Correct! ${q.explanation}`;
+            } else {
+                wrongAnswers++;
+                feedback.className = 'feedback show wrong';
+                feedback.innerHTML = `❌ Wrong! ${q.explanation}`;
+            }
+            document.getElementById('correctScore').textContent = correctAnswers;
+            document.getElementById('wrongScore').textContent = wrongAnswers;
+            document.getElementById('nextBtn').classList.add('show');
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < questions.length) { renderQuestion(); }
+            else { showResults(); }
+        }
+
+        function showResults() {
+            document.getElementById('quizContent').innerHTML = '';
+            const results = document.getElementById('results');
+            results.classList.add('show');
+            const finalScore = `${correctAnswers}/${questions.length}`;
+            document.getElementById('finalScore').textContent = finalScore;
+            let message = '';
+            if (correctAnswers === 10) message = '🏆 Perfect! You are a true World Cup expert!';
+            else if (correctAnswers >= 8) message = '⚽ Amazing! You know your World Cup facts!';
+            else if (correctAnswers >= 6) message = '👍 Good job! You know a lot about football!';
+            else if (correctAnswers >= 4) message = '📚 Not bad! Keep learning about the World Cup!';
+            else message = '🤔 Time to study up before the World Cup!';
+            document.getElementById('resultMessage').textContent = message;
+            const shareBtn = document.getElementById('shareBtn');
+            shareBtn.href = `https://www.facebook.com/sharer/sharer.php?u=https://fattoboy30-boop.github.io/ht-worldcup-hub-2026/&quote=I+scored+${correctAnswers}/10+on+the+World+Cup+Trivia+Quiz!+Can+you+beat+me?+⚽`;
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            correctAnswers = 0;
+            wrongAnswers = 0;
+            document.getElementById('correctScore').textContent = '0';
+            document.getElementById('wrongScore').textContent = '0';
+            document.getElementById('results').classList.remove('show');
+            renderQuestion();
+        }
+
+        renderQuestion();
+    </script>
+</body>
+</html>
