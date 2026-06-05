@@ -142,18 +142,18 @@ const DATA = {
 
     // World Cup 2026 Groups (Confirmed)
     groups: {
-        "A": ["Mexico", "South Africa", "Korea Republic", "Czechia"],
-        "B": ["Canada", "Bosnia and Herzegovina", "Qatar", "Switzerland"],
-        "C": ["Brazil", "Morocco", "Haiti", "Scotland"],
-        "D": ["USA", "Paraguay", "Australia", "Türkiye"],
-        "E": ["Germany", "Curaçao", "Côte d'Ivoire", "Ecuador"],
-        "F": ["Netherlands", "Japan", "Sweden", "Tunisia"],
-        "G": ["Belgium", "Egypt", "IR Iran", "New Zealand"],
-        "H": ["Spain", "Cabo Verde", "Saudi Arabia", "Uruguay"],
-        "I": ["France", "Senegal", "Iraq", "Norway"],
-        "J": ["Argentina", "Algeria", "Austria", "Jordan"],
-        "K": ["Portugal", "Congo DR", "Uzbekistan", "Colombia"],
-        "L": ["England", "Croatia", "Ghana", "Panama"]
+        "A": { teams: ["Mexico", "South Africa", "Korea Republic", "Czechia"] },
+        "B": { teams: ["Canada", "Bosnia and Herzegovina", "Qatar", "Switzerland"] },
+        "C": { teams: ["Brazil", "Morocco", "Haiti", "Scotland"] },
+        "D": { teams: ["USA", "Paraguay", "Australia", "Türkiye"] },
+        "E": { teams: ["Germany", "Curaçao", "Côte d'Ivoire", "Ecuador"] },
+        "F": { teams: ["Netherlands", "Japan", "Sweden", "Tunisia"] },
+        "G": { teams: ["Belgium", "Egypt", "IR Iran", "New Zealand"] },
+        "H": { teams: ["Spain", "Cabo Verde", "Saudi Arabia", "Uruguay"] },
+        "I": { teams: ["France", "Senegal", "Iraq", "Norway"] },
+        "J": { teams: ["Argentina", "Algeria", "Austria", "Jordan"] },
+        "K": { teams: ["Portugal", "Congo DR", "Uzbekistan", "Colombia"] },
+        "L": { teams: ["England", "Croatia", "Ghana", "Panama"] }
     },
 
     // Complete Group Stage Fixtures

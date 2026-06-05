@@ -222,7 +222,7 @@ def check_data():
     print_check("104 matches", "totalMatches: 104" in content)
 
     # Count groups
-    groups = re.findall(r'"([A-L])":\s*\[', content)
+    groups = re.findall(r'"([A-L])":\s*[\[{]', content)
     print_check(f"All 12 groups (A-L)", len(groups) == 12, f"Found {len(groups)}")
     if len(groups) != 12:
         issues.append(f"Expected 12 groups, found {len(groups)}")
