@@ -143,20 +143,36 @@ function initTeams() {
     if (!teamsGrid) return;
 
     const groups = DATA.groups;
+    const flags = DATA.flags || {};
+
+    function getTeamName(team) {
+        return typeof team === 'string' ? team : team.name;
+    }
+
+    function getTeamFlag(teamName) {
+        return flags[teamName] || '🏳️';
+    }
+
+    function getGroupTeams(group) {
+        if (Array.isArray(group)) return group;
+        if (group && group.teams) return group.teams;
+        return [];
+    }
 
     function renderTeams(filter = 'all') {
         teamsGrid.innerHTML = '';
         Object.keys(groups).forEach(groupLetter => {
             if (filter !== 'all' && filter !== groupLetter) return;
             const group = groups[groupLetter];
-            group.teams.forEach(team => {
+            const teams = getGroupTeams(group);
+            teams.forEach(team => {
+                const teamName = getTeamName(team);
                 const card = document.createElement('div');
                 card.className = 'team-card reveal';
                 card.setAttribute('data-group', groupLetter);
-                const flag = DATA.flags[team.name] || '🏳️';
                 card.innerHTML = `
-                    <span class="team-flag">${flag}</span>
-                    <div class="team-name">${team.name}</div>
+                    <span class="team-flag">${getTeamFlag(teamName)}</span>
+                    <div class="team-name">${teamName}</div>
                     <div class="team-group">Group ${groupLetter}</div>
                 `;
                 teamsGrid.appendChild(card);
